@@ -30,7 +30,8 @@ LBFT_SRC := ft_realloc.c ft_isspace.c	ft_isupper.c ft_islower.c	\
             ft_putnbr_fd.c ft_lstnew.c ft_lstdelone.c	\
             ft_lstdel.c ft_lstadd.c ft_lstiter.c ft_lstmap.c \
             ft_sqrt.c ft_abs.c ft_max.c ft_print_memory.c ft_itoa_base.c \
-            ft_strnjoin.c ft_min.c ft_strndup.c
+            ft_strnjoin.c ft_min.c ft_strndup.c ft_strsplit_c.c \
+			ft_arrlen.c
 
 GNL_SRC := get_next_line.c
 

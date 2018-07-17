@@ -81,7 +81,7 @@ char				*ft_strjoin(char const *s1, char const *s2);
 char				*ft_strnjoin(char const *s1, char const *s2, 
 								size_t n1, size_t n2);
 char				*ft_strtrim(char const *s);
-//char				**ft_strsplit(char const *s, char c);
+char				**ft_strsplit_c(char const *s, char c);
 char				**ft_strsplit(char *s);
 int					ft_count_nb_words(const char *s, char c);
 char				*ft_itoa(int nbr);
@@ -95,6 +95,7 @@ void				ft_putendl_fd(char const *s, int fd);
 void				ft_putnbr_fd(int nb, int fd);
 char				*ft_realloc(char *ptr, size_t size);
 char				*ft_itoa_base(int value, int base);
+int					ft_arrlen(char **array);
 
 /*
  * list structure and functions
