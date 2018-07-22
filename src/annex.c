@@ -40,3 +40,32 @@ void   ft_ch_st_end_nb(t_data *data)
   if (data->end_cmd != 1)
     exit(PRT_ERROR);
 }
+
+void    save_first_line(t_data *data, char *line)
+{
+  if (!(data->lines_in = (char**)malloc(sizeof(char*) * 2)))
+    exit(0);
+  data->lines_in[0] = ft_strdup(line);
+  data->lines_in[1] = NULL;
+}
+
+void   save_line(t_data *data, char *line)
+{
+  char  **tmp;
+  int   i;
+
+  if (IS_FIRST_LINE)
+    save_first_line(data, line);
+  else
+  {
+    if (!(tmp = (char**)malloc(sizeof(char*) * (ft_arrlen(data->lines_in) + 2))))
+      exit(0);
+    i = -1;
+    while (data->lines_in[++i])
+      tmp[i] = ft_strdup(data->lines_in[i]);
+    tmp[i] = ft_strdup(line);
+    tmp[i + 1] = NULL;
+    ft_free_tab(data->lines_in);
+    data->lines_in = tmp;
+  }
+}

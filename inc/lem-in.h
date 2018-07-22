@@ -33,7 +33,7 @@
 # define COMMENT 4
 # define COMMAND 5
 
-// line checks
+// check_line
 # define IS_START_CMD (ft_strcmp(line, "##start") == 0)
 # define IS_END_CMD (ft_strcmp(line, "##end") == 0)
 # define IS_EMPTY_LINE (*line == '\0')
@@ -52,6 +52,8 @@
 # define INDEX_TAB1 (ft_index_room(data, tab[1]))
 # define TUBE_ALREADY_SAVED (data->map != NULL && data->map[INDEX_TAB0][INDEX_TAB1])
 
+// save_line
+# define IS_FIRST_LINE (data->lines_in == NULL)
 
 #include "../libft/inc/libft.h"
 #include "../libft/inc/ft_printf.h"
@@ -76,6 +78,8 @@ typedef struct  s_data
 
 // check errors functions
 int		check_line(t_data *data, char *line, int *flag);
+void   save_line(t_data *data, char *line);
+
 
 // free functions
 void  ft_free_tab(char **tab);
@@ -85,5 +89,7 @@ int   ft_tube(char **tab, int *flag);
 int   ft_index_room(t_data *data, char *room);
 void   ft_ch_st_end_nb(t_data *data);
 
+// debug functions
+void    ft_prt_tab(char **tab);
 
 #endif

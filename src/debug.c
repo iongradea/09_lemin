@@ -12,38 +12,12 @@
 
 #include "../inc/lem-in.h"
 
-static void  ft_init_data(t_data *data)
+void    ft_prt_tab(char **tab)
 {
-  data->st_cmd = 0;
-  data->end_cmd = 0;
-  data->st_end_flg = FALSE;
-  data->lines_in = NULL;
-  data->nb_ant = 0;
-  data->nb_room = 0;
-  data->nb_tube = 0;
-  data->nameend = NULL;
-  data->nameend = NULL;
-  data->map = NULL;
-  data->room = NULL;
-  data->dist = NULL;
-  data->spt_set = NULL;
-}
+  int   i;
 
-int   main(void)
-{
-	char		*line;
-	t_data	data;
-  int     flag;
-
-	ft_init_data(&data);
-  flag = ANT;
-	while (get_next_line(0, &line) > 0)
-	{
-		check_line(&data, line, &flag);
-    save_line(&data, line);
-	}
-  ft_printf("end main\n");
-  ft_ch_st_end_nb(&data);
-  ft_prt_tab(data.lines_in);
-  return (0);
+  i = -1;
+  ft_printf("ft_prt_tab\n");
+  while (tab[++i])
+    ft_printf("%s\n", tab[i]);
 }
