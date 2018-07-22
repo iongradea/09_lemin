@@ -36,7 +36,7 @@ int   main(void)
   flag = ANT;
 	while (get_next_line(0, &line) > 0)
 	{
-		ft_check_line(&data, line, &flag))
+		check_line(&data, line, &flag);
 	}
   return (0);
 }

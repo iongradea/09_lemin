@@ -16,7 +16,7 @@ NAME = lem-in
 CC = gcc
 
 # Source files
-SRC = main.c
+SRC = main.c check_line.c annex.c free_ptr.c
 
 SRCS = $(addprefix ./$(SRC_DIR)/, $(SRC))
 
@@ -69,12 +69,12 @@ $(NAME): $(OBJS)
 
 clean:
 	$(MAKE) -C $(LBFT_DIR) clean
-	$(RM) -rfv $(OBJS_CH) $(OBJS_PS)
+	$(RM) -rfv $(NAME)
 	@rmdir $(OBJ_DIR) 2> /dev/null || true
 
 fclean: clean
 	$(MAKE) -C $(LBFT_DIR) fclean
-	$(RM) -rfv $(NAME_CH) $(NAME_PS)
+	$(RM) -rfv $(NAME)
 
 re: fclean all
 

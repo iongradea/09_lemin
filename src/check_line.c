@@ -43,11 +43,14 @@ static int    ch_room(t_data *data, char *line, int *flag)
   int   i;
 
   tab = ft_strsplit_c(line, ' ');
+  ft_printf("ch_room\n");
   if (IT_IS_TUBE)
     return (ft_tube(tab, flag));
-  if (NO_THREE_ELTS || ch_room_saved(data, tab))
+  if (NO_THREE_ELTS)
     exit(PRT_ERROR);
   if (INCORRECT_ROOM_NAME)
+    exit(PRT_ERROR);
+  if (ROOM_ALREADY_SAVED)
     exit(PRT_ERROR);
   i = -1;
 	while (tab[1][++i])
@@ -73,6 +76,7 @@ static int    ch_tube(t_data *data, char *line)
   char  **tab;
 
   tab = ft_strsplit_c(line, '-');
+  ft_printf("ch_tube\n");
   if (NO_TWO_ELTS)
     exit(PRT_ERROR);
   if (THERE_ARE_ROOMS == FALSE)
@@ -88,26 +92,22 @@ static int    ch_tube(t_data *data, char *line)
 
 int				check_line(t_data *data, char *line, int *flag)
 {
-  static int  start_cmd = 0;
-  static int  end_cmd = 0;
+  static int i = 0;
 
+  ft_printf("%d\n", i);
+  i++;
 	if (line == NULL)
 		return (FAIL);
 	if (IS_EMPTY_LINE)
 		return (FAIL);
-  if (IS_START_COMMAND)
-    start_cmd++;
-  if (IS_END_COMMAND)
-    end_cmd++;
 	if (IS_COMMENT || IS_COMMAND)
 		return (COMMENT);
 	if (*flag == ANT)
 		return (ch_nb_ants(line, flag));
 	if (*flag == ROOM)
     ch_room(data, line, flag);
+  ft_printf("flag : %d\n", *flag);
 	if (*flag == TUBE)
 		ch_tube(data, line);
-  if (START_AND_END_ONLY_ONCE == FALSE)
-    exit(PRT_ERROR);
 	return (SUCCESS);
 }

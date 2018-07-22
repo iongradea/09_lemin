@@ -17,7 +17,7 @@
 // vars
 # define TRUE 1
 # define FALSE 0
-# define SUCCESS 1
+// SUCCESS already defined in gnl
 # define FAIL 0
 # define NOT_FOUND -1
 # define ERROR -1
@@ -34,25 +34,22 @@
 # define COMMAND 5
 
 // line checks
-# define IS_EMPTY_LINE *line == '\0'
-# define IS_COMMENT *line == '#'
-# define IS_COMMAND line[0] == '#' && line[1] == '#'
-# define IS_START_CMD ft_strcmp(line, "##start") == 0
-# define IS_END_CMD ft_strcmp(line, "##end") == 0
-# define START_AND_END_ONLY_ONCE start_cmd == 1 && end_cmd == 1
+# define IS_EMPTY_LINE (*line == '\0')
+# define IS_COMMENT (*line == '#')
+# define IS_COMMAND (line[0] == '#' && line[1] == '#')
 // ants
-# define IS_ZERO ft_strlen(line) == 1 && line[0] == '0'
+# define IS_ZERO (ft_strlen(line) == 1 && line[0] == '0')
 // ch_room
-# define NO_THREE_ELTS ft_arrlen(tab) != 3
-# define IT_IS_TUBE ft_arrlen(tab) == 1
-# define INCORRECT_ROOM_NAME *tab[0] == 'L'
+# define NO_THREE_ELTS (ft_arrlen(tab) != 3)
+# define IT_IS_TUBE (ft_arrlen(tab) == 1)
+# define INCORRECT_ROOM_NAME (*tab[0] == 'L')
+# define ROOM_ALREADY_SAVED (data->room != NULL && ft_arrlen(data->room) != 0 && ft_index_room(data, tab[0]) != NOT_FOUND)
 // ch_tube
-# define NO_TWO_ELTS ft_arrlen(tab) != 2
-# define THERE_ARE_ROOMS ft_arrlen(data->rooms) != 0
-# define TUBE_ALREADY_SAVED data->map != NULL && data->map[INDEX_TAB0][INDEX_TAB1]
-# define INDEX_TAB0 ft_index_room(tab[0])
-# define INDEX_TAB1 ft_index_room(tab[1])
-// check start & end present & only once
+# define NO_TWO_ELTS (ft_arrlen(tab) != 2)
+# define THERE_ARE_ROOMS (data->room != NULL && ft_arrlen(data->room) != 0)
+# define INDEX_TAB0 (ft_index_room(data, tab[0]))
+# define INDEX_TAB1 (ft_index_room(data, tab[1]))
+# define TUBE_ALREADY_SAVED (data->map != NULL && data->map[INDEX_TAB0][INDEX_TAB1])
 
 
 #include "../libft/inc/libft.h"
@@ -74,14 +71,14 @@ typedef struct  s_data
 }             t_data;
 
 // check errors functions
-int		ft_check_line(t_data *data, char *line, int *flag);
+int		check_line(t_data *data, char *line, int *flag);
 
 // free functions
 void  ft_free_tab(char **tab);
 
 // annex functions
 int   ft_tube(char **tab, int *flag);
-int   ch_room_saved(t_data *data, char **room);
+int   ft_index_room(t_data *data, char *room);
 
 
 #endif

@@ -24,9 +24,9 @@ int		ft_index_room(t_data *data, char *room)
 	int		i;
 
 	i = 0;
-	while (info->room[i])
+	while (data->room[i])
 	{
-		if (!ft_strcmp(info->room[i], room))
+		if (!ft_strcmp(data->room[i], room))
 			return (i);
 		i++;
 	}
