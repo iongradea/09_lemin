@@ -32,3 +32,11 @@ int		ft_index_room(t_data *data, char *room)
 	}
 	return (NOT_FOUND);
 }
+
+void   ft_ch_st_end_nb(t_data *data)
+{
+  if (data->st_cmd != 1)
+    exit(PRT_ERROR);
+  if (data->end_cmd != 1)
+    exit(PRT_ERROR);
+}

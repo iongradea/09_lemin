@@ -12,12 +12,15 @@
 
 #include "../inc/lem-in.h"
 
-void  ft_init_data(t_data *data)
+static void  ft_init_data(t_data *data)
 {
+  data->st_cmd = 0;
+  data->end_cmd = 0;
+  data->st_end_flg = FALSE;
   data->lines_in = NULL;
-  data->nb_ant = UNDEFINED;
-  data->nb_room = UNDEFINED;
-  data->nb_tube = UNDEFINED;
+  data->nb_ant = 0;
+  data->nb_room = 0;
+  data->nb_tube = 0;
   data->nameend = NULL;
   data->nameend = NULL;
   data->map = NULL;
@@ -38,5 +41,7 @@ int   main(void)
 	{
 		check_line(&data, line, &flag);
 	}
+  ft_printf("end main\n");
+  ft_ch_st_end_nb(&data);
   return (0);
 }

@@ -34,14 +34,15 @@
 # define COMMAND 5
 
 // line checks
+# define IS_START_CMD (ft_strcmp(line, "##start") == 0)
+# define IS_END_CMD (ft_strcmp(line, "##end") == 0)
 # define IS_EMPTY_LINE (*line == '\0')
 # define IS_COMMENT (*line == '#')
-# define IS_COMMAND (line[0] == '#' && line[1] == '#')
 // ants
 # define IS_ZERO (ft_strlen(line) == 1 && line[0] == '0')
 // ch_room
 # define NO_THREE_ELTS (ft_arrlen(tab) != 3)
-# define IT_IS_TUBE (ft_arrlen(tab) == 1)
+# define IS_TUBE (ft_arrlen(tab) == 1)
 # define INCORRECT_ROOM_NAME (*tab[0] == 'L')
 # define ROOM_ALREADY_SAVED (data->room != NULL && ft_arrlen(data->room) != 0 && ft_index_room(data, tab[0]) != NOT_FOUND)
 // ch_tube
@@ -58,6 +59,9 @@
 
 typedef struct  s_data
 {
+  int  st_cmd;
+  int  end_cmd;
+  int  st_end_flg;
   char **lines_in;
   int  nb_ant;
   int  nb_room;
@@ -79,6 +83,7 @@ void  ft_free_tab(char **tab);
 // annex functions
 int   ft_tube(char **tab, int *flag);
 int   ft_index_room(t_data *data, char *room);
+void   ft_ch_st_end_nb(t_data *data);
 
 
 #endif
