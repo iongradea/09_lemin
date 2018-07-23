@@ -123,9 +123,9 @@ int				check_line(t_data *data, char *line, int *flag)
   ft_printf("%d\n", i);
   i++;
 	if (line == NULL)
-		return (FAIL);
+		exit(PRT_ERROR);
 	if (IS_EMPTY_LINE)
-		return (FAIL);
+		exit(PRT_ERROR);
 	if (IS_COMMENT && !IS_START_CMD && !IS_END_CMD)
 		return (COMMENT);
   if ((IS_START_CMD || IS_END_CMD) && (*flag == ANT || st_end_flg == TRUE))
