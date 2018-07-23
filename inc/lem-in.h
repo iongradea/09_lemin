@@ -17,7 +17,7 @@
 // vars
 # define TRUE 1
 # define FALSE 0
-// SUCCESS already defined in gnl
+// SUCCESS already defined in gnl equals to 2
 # define FAIL 0
 # define NOT_FOUND -1
 # define ERROR -1
@@ -55,13 +55,24 @@
 // save_line
 # define IS_FIRST_LINE (data->lines_in == NULL)
 
+// parser
+# define IS_FIRST_ROOM (data->room == NULL)
+# define IS_START_ROOM (flag->st_parser == TRUE)
+# define IS_END_ROOM (flag->end_parser == TRUE)
+# define IS_COMMENT_PARSE (flag->line_type == COMMENT)
+# define IS_CMD_PARSE (flag->line_type == CMD)
+# define IS_ANT_PARSE (flag->line_type == ANT)
+# define IS_ROOM_PARSE (flag->line_type == ROOM)
+# define IS_TUBE_PARSE (flag->line_type == TUBE)
+# define IS_FIRST_TUBE (data->map == NULL)
+
 #include "../libft/inc/libft.h"
 #include "../libft/inc/ft_printf.h"
 #include "../libft/inc/get_next_line.h"
 
 
 /*
-details structure :
+details data struct :
 - st_cmd : used to count the nb of start cmd => should be 1 at the end
 - end_cmd : as above
 - lines_in : saves all input lines for printing
@@ -82,11 +93,22 @@ typedef struct  s_data
   int  *spt_set;
 }             t_data;
 
+/*
+details flag struct :
+- process : used to identify whether checking ANT, ROOM or TUBE because they
+follow each other / to check errors by check_line
+- st_end_flg : used to identify whether the line before was start or end cmd
+/ used to check errors by check_line
+- line_type : used to identify which line type it is / set in check_line and
+used in parse_data
+*/
 typedef struct s_flag
 {
   int  process;
-  int  line_type;
   int  st_end_flg;
+  int  line_type;
+  int  st_parser;
+  int  end_parser;
 }              t_flag;
 
 // check errors functions
@@ -101,6 +123,8 @@ void  ft_free_tab(char **tab);
 int   ft_tube(char **tab, t_flag *flag);
 int   ft_index_room(t_data *data, char *room);
 void   ft_ch_st_end_count(t_data *data);
+int  ft_set_flag(char *line, t_flag *flag);
+
 
 // debug functions
 void    ft_prt_tab(char **tab);

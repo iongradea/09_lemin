@@ -40,3 +40,12 @@ void   ft_ch_st_end_count(t_data *data)
   if (data->end_cmd != 1)
     exit(PRT_ERROR);
 }
+
+int  ft_set_flag(char *line, t_flag *flag)
+{
+  if (IS_START_CMD)
+    flag->st_parser = TRUE;
+  else if (IS_END_CMD)
+    flag->end_parser = TRUE;
+  return (SUCCESS);
+}

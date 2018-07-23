@@ -99,6 +99,7 @@ static int    ch_tube(t_data *data, char *line, t_flag *flag)
 
 static int  ch_st_end(t_data *data, char *line, t_flag *flag)
 {
+	ft_printf("ch_st_end\n");
   if (IS_START_CMD)
     data->st_cmd++;
   else if (IS_END_CMD)
@@ -139,7 +140,6 @@ int				check_line(t_data *data, char *line, t_flag *flag)
     return (ch_st_end(data, line, flag));
 	if (flag->process == ROOM)
     ch_room(data, line, flag);
-  ft_printf("flag : %d\n", *flag);
 	if (flag->process == TUBE)
 		ch_tube(data, line, flag);
 	return (SUCCESS);

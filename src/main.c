@@ -33,6 +33,8 @@ static void   ft_init_flag(t_flag *flag)
   flag->process = ANT;
   flag->line_type = UNDEFINED;
   flag->st_end_flg = FALSE;
+  flag->st_parser = FALSE;
+  flag->end_parser = FALSE;
 }
 
 int   main(void)
@@ -51,5 +53,6 @@ int   main(void)
   ft_printf("end main\n");
   ft_ch_st_end_count(&data);
   ft_prt_tab(data.lines_in);
+  ft_prt_tab(data.room);
   return (0);
 }
