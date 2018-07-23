@@ -12,23 +12,6 @@
 
 #include "../inc/lem-in.h"
 
-static int   parse_st_end_room(t_data *data, char *line, t_flag *flag)
-{
-  if (IS_START_ROOM)
-  {
-    if (!(data->namestart = ft_strdup(line)))
-      exit(0);
-    flag->st_parser = FALSE;
-  }
-  else if (IS_END_ROOM)
-  {
-    if (!(data->nameend = ft_strdup(line)))
-      exit(0);
-    flag->end_parser = FALSE;
-  }
-  return (SUCCESS);
-}
-
 static int   parse_first_room(t_data *data, char *line)
 {
   char  **tab;

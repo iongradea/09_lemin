@@ -10,33 +10,30 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../inc/lem-in.h"
+#include "../inc/lem-in.h"
 
-int   ft_tube(char **tab, t_flag *flag)
+int   parse_st_end_room(t_data *data, char *line, t_flag *flag)
 {
-  flag->process = TUBE;
-  ft_free_tab(tab);
+  if (IS_START_ROOM)
+  {
+    if (!(data->namestart = ft_strdup(line)))
+      exit(0);
+    flag->st_parser = FALSE;
+  }
+  else if (IS_END_ROOM)
+  {
+    if (!(data->nameend = ft_strdup(line)))
+      exit(0);
+    flag->end_parser = FALSE;
+  }
   return (SUCCESS);
 }
 
-int		ft_index_room(t_data *data, char *room)
+int  ft_set_flag(char *line, t_flag *flag)
 {
-	int		i;
-
-	i = 0;
-	while (data->room[i])
-	{
-		if (!ft_strcmp(data->room[i], room))
-			return (i);
-		i++;
-	}
-	return (NOT_FOUND);
-}
-
-void   ft_ch_st_end_count(t_data *data)
-{
-  if (data->st_cmd != 1)
-    exit(PRT_ERROR);
-  if (data->end_cmd != 1)
-    exit(PRT_ERROR);
+  if (IS_START_CMD)
+    flag->st_parser = TRUE;
+  else if (IS_END_CMD)
+    flag->end_parser = TRUE;
+  return (SUCCESS);
 }

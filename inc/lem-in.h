@@ -122,7 +122,6 @@ void   save_line(t_data *data, char *line);
 // parse functions
 int   parse_data(t_data *data, char *line, t_flag *flag);
 
-
 // free functions
 void  ft_free_tab(char **tab);
 
@@ -130,8 +129,8 @@ void  ft_free_tab(char **tab);
 int   ft_tube(char **tab, t_flag *flag);
 int   ft_index_room(t_data *data, char *room);
 void   ft_ch_st_end_count(t_data *data);
+int   parse_st_end_room(t_data *data, char *line, t_flag *flag);
 int  ft_set_flag(char *line, t_flag *flag);
-
 
 // debug functions
 void    ft_prt_tab(char **tab);
