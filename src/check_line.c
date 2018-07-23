@@ -96,8 +96,6 @@ static int    ch_tube(t_data *data, char *line)
 
 static int  ch_st_end(t_data *data, char *line, int *st_end_flg)
 {
-  if (data->st_end_flg == TRUE)
-    exit(PRT_ERROR);
   if (IS_START_CMD)
     data->st_cmd++;
   else if (IS_END_CMD)
@@ -115,7 +113,7 @@ check errors :
 cmd
 - checks ant
 - check room
-- check tube 
+- check tube
 */
 int				check_line(t_data *data, char *line, int *flag)
 {
