@@ -39,3 +39,12 @@ void    ft_print_tab_int(int **tab)
     j = -1;
   }
 }
+
+void  ft_print_djikstra(t_data *data)
+{
+  int i;
+
+  i = -1;
+  while (++i < data->nb_room)
+    ft_printf("%s - %d - %d\n", data->room[i], data->dist[i], data->spt_set[i]);
+}

@@ -70,6 +70,20 @@
 # define IS_TUBE_PARSE (flag->line_type == TUBE)
 # define IS_FIRST_TUBE (data->map == NULL)
 
+// djikstra
+# define INDEX_TAB(room) (ft_index_room(data, room))
+# define INDEX_TAB_START (INDEX_TAB(data->namestart))
+# define INDEX_TAB_END (INDEX_TAB(data->nameend))
+# define DIST_SET(i) (data->dist[i] != UNDEFINED)
+# define IS_NOT_PART_SPTSET(i) (data->spt_set[i] == FALSE)
+# define DIST_SMALLER (data->dist[i] < data->dist[min_i])
+# define NO_POSSIBLE_PATH (min_i = UNDEFINED)
+# define END_NOT_PART_SPTSET (data->spt_set[INDEX_TAB(data->nameend)] == FALSE)
+# define TUBE_EXIST(index, i) (data->map[index][i] == TUBE_LINK)
+# define DIST_UNDEFINED (data->dist[i] == UNDEFINED)
+# define DIST_GREATER_INDEX_AND_ONE (data->dist[i] > data->dist[index] + 1)
+# define FIRST_LOOP_DJIKSTRA (data->spt_set[INDEX_TAB_START] == FALSE)
+
 #include "../libft/inc/libft.h"
 #include "../libft/inc/ft_printf.h"
 #include "../libft/inc/get_next_line.h"
@@ -122,6 +136,9 @@ void   save_line(t_data *data, char *line);
 // parse functions
 int   parse_data(t_data *data, char *line, t_flag *flag);
 
+// djikstra functions
+int     djikstra(t_data *data);
+
 // free functions
 void  ft_free_tab(char **tab);
 
@@ -135,5 +152,6 @@ int  ft_set_flag(char *line, t_flag *flag);
 // debug functions
 void    ft_prt_tab(char **tab);
 void    ft_print_tab_int(int **tab);
+void  ft_print_djikstra(t_data *data);
 
 #endif

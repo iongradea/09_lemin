@@ -48,10 +48,10 @@ static int   parse_room(t_data *data, char *line, t_flag *flag)
     exit(0);
   tmp[i + 1] = NULL;
   data->nb_room++;
+  if (IS_START_ROOM || IS_END_ROOM)
+    parse_st_end_room(data, tab[0], flag);
   ft_free_tab(tab);
   ft_free_tab(data->room);
-  if (IS_START_ROOM || IS_END_ROOM)
-    parse_st_end_room(data, line, flag);
   data->room = tmp;
   return (SUCCESS);
 }

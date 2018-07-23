@@ -12,17 +12,17 @@
 
 #include "../inc/lem-in.h"
 
-int   parse_st_end_room(t_data *data, char *line, t_flag *flag)
+int   parse_st_end_room(t_data *data, char *str, t_flag *flag)
 {
   if (IS_START_ROOM)
   {
-    if (!(data->namestart = ft_strdup(line)))
+    if (!(data->namestart = ft_strdup(str)))
       exit(0);
     flag->st_parser = FALSE;
   }
   else if (IS_END_ROOM)
   {
-    if (!(data->nameend = ft_strdup(line)))
+    if (!(data->nameend = ft_strdup(str)))
       exit(0);
     flag->end_parser = FALSE;
   }

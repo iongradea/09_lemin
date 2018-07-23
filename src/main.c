@@ -56,5 +56,7 @@ int   main(void)
   ft_prt_tab(data.lines_in);
   ft_prt_tab(data.room);
   ft_print_tab_int(data.map);
+  djikstra(&data);
+  ft_print_djikstra(&data);
   return (0);
 }
