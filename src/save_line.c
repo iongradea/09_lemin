@@ -10,33 +10,33 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../inc/lem-in.h"
+#include "../inc/lem-in.h"
 
-int   ft_tube(char **tab, int *flag)
+static void    save_first_line(t_data *data, char *line)
 {
-  *flag = TUBE;
-  ft_free_tab(tab);
-  return (SUCCESS);
+  if (!(data->lines_in = (char**)malloc(sizeof(char*) * 2)))
+    exit(0);
+  data->lines_in[0] = ft_strdup(line);
+  data->lines_in[1] = NULL;
 }
 
-int		ft_index_room(t_data *data, char *room)
+void   save_line(t_data *data, char *line)
 {
-	int		i;
+  char  **tmp;
+  int   i;
 
-	i = 0;
-	while (data->room[i])
-	{
-		if (!ft_strcmp(data->room[i], room))
-			return (i);
-		i++;
-	}
-	return (NOT_FOUND);
-}
-
-void   ft_ch_st_end_nb(t_data *data)
-{
-  if (data->st_cmd != 1)
-    exit(PRT_ERROR);
-  if (data->end_cmd != 1)
-    exit(PRT_ERROR);
+  if (IS_FIRST_LINE)
+    save_first_line(data, line);
+  else
+  {
+    if (!(tmp = (char**)malloc(sizeof(char*) * (ft_arrlen(data->lines_in) + 2))))
+      exit(0);
+    i = -1;
+    while (data->lines_in[++i])
+      tmp[i] = ft_strdup(data->lines_in[i]);
+    tmp[i] = ft_strdup(line);
+    tmp[i + 1] = NULL;
+    ft_free_tab(data->lines_in);
+    data->lines_in = tmp;
+  }
 }
