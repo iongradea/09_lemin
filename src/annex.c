@@ -12,9 +12,9 @@
 
 # include "../inc/lem-in.h"
 
-int   ft_tube(char **tab, int *flag)
+int   ft_tube(char **tab, t_flag *flag)
 {
-  *flag = TUBE;
+  flag->process = TUBE;
   ft_free_tab(tab);
   return (SUCCESS);
 }
@@ -33,7 +33,7 @@ int		ft_index_room(t_data *data, char *room)
 	return (NOT_FOUND);
 }
 
-void   ft_ch_st_end_nb(t_data *data)
+void   ft_ch_st_end_count(t_data *data)
 {
   if (data->st_cmd != 1)
     exit(PRT_ERROR);

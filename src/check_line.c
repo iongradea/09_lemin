@@ -15,7 +15,7 @@
 /*
 check ants : not a digit
 */
-static int		ch_nb_ants(char *line, int *flag)
+static int		ch_nb_ants(char *line, t_flag *flag)
 {
 	int		i;
 
@@ -27,7 +27,8 @@ static int		ch_nb_ants(char *line, int *flag)
 			exit(PRT_ERROR);
 		i++;
 	}
-	*flag = ROOM;
+	flag->process = ROOM;
+	flag->line_type = ANT;
 	return (SUCCESS);
 }
 
@@ -38,14 +39,14 @@ checks room :
 - incorrect room name
 - room coordinates are not digits
 */
-static int    ch_room(t_data *data, char *line, int *flag, int *st_end_flg)
+static int    ch_room(t_data *data, char *line, t_flag *flag)
 {
   char  **tab;
   int   i;
 
   tab = ft_strsplit_c(line, ' ');
   ft_printf("ch_room\n");
-  if (NO_THREE_ELTS && *st_end_flg == TRUE)
+  if (NO_THREE_ELTS && flag->st_end_flg == TRUE)
     exit(PRT_ERROR);
   if (IS_TUBE)
     return (ft_tube(tab, flag));
@@ -64,7 +65,8 @@ static int    ch_room(t_data *data, char *line, int *flag, int *st_end_flg)
 		if (!ft_isdigit(tab[2][i]))
 			exit(PRT_ERROR);
 	ft_free_tab(tab);
-  *st_end_flg = FALSE;
+	flag->line_type = ROOM;
+  flag->st_end_flg = FALSE;
   return (SUCCESS);
 }
 
@@ -75,7 +77,7 @@ check list :
 - tube rooms presents in room list
 - tube is present only once
 */
-static int    ch_tube(t_data *data, char *line)
+static int    ch_tube(t_data *data, char *line, t_flag *flag)
 {
   char  **tab;
 
@@ -91,16 +93,18 @@ static int    ch_tube(t_data *data, char *line)
   if (TUBE_ALREADY_SAVED)
     exit(PRT_ERROR);*/
   ft_free_tab(tab);
+	flag->line_type = TUBE;
   return (SUCCESS);
 }
 
-static int  ch_st_end(t_data *data, char *line, int *st_end_flg)
+static int  ch_st_end(t_data *data, char *line, t_flag *flag)
 {
   if (IS_START_CMD)
     data->st_cmd++;
   else if (IS_END_CMD)
     data->end_cmd++;
-  *st_end_flg = TRUE;
+	flag->line_type = CMD;
+  flag->st_end_flg = TRUE;
   return (SUCCESS);
 }
 
@@ -115,10 +119,9 @@ cmd
 - check room
 - check tube
 */
-int				check_line(t_data *data, char *line, int *flag)
+int				check_line(t_data *data, char *line, t_flag *flag)
 {
   static int i = 0;
-  static int st_end_flg = FALSE;
 
   ft_printf("%d\n", i);
   i++;
@@ -127,17 +130,17 @@ int				check_line(t_data *data, char *line, int *flag)
 	if (IS_EMPTY_LINE)
 		exit(PRT_ERROR);
 	if (IS_COMMENT && !IS_START_CMD && !IS_END_CMD)
-		return (COMMENT);
-  if ((IS_START_CMD || IS_END_CMD) && (*flag == ANT || st_end_flg == TRUE))
+		return (flag->line_type = COMMENT);
+  if ((IS_START_CMD || IS_END_CMD) && (flag->process == ANT || flag->st_end_flg == TRUE))
     exit(PRT_ERROR);
-	if (*flag == ANT)
+	if (flag->process == ANT)
 		return (ch_nb_ants(line, flag));
   if (IS_START_CMD || IS_END_CMD)
-    return (ch_st_end(data, line, &st_end_flg));
-	if (*flag == ROOM)
-    ch_room(data, line, flag, &st_end_flg);
+    return (ch_st_end(data, line, flag));
+	if (flag->process == ROOM)
+    ch_room(data, line, flag);
   ft_printf("flag : %d\n", *flag);
-	if (*flag == TUBE)
-		ch_tube(data, line);
+	if (flag->process == TUBE)
+		ch_tube(data, line, flag);
 	return (SUCCESS);
 }

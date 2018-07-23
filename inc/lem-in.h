@@ -31,7 +31,7 @@
 # define ROOM 2
 # define TUBE 3
 # define COMMENT 4
-# define COMMAND 5
+# define CMD 5
 
 // check_line
 # define IS_START_CMD (ft_strcmp(line, "##start") == 0)
@@ -59,11 +59,17 @@
 #include "../libft/inc/ft_printf.h"
 #include "../libft/inc/get_next_line.h"
 
+
+/*
+details structure :
+- st_cmd : used to count the nb of start cmd => should be 1 at the end
+- end_cmd : as above
+- lines_in : saves all input lines for printing
+*/
 typedef struct  s_data
 {
   int  st_cmd;
   int  end_cmd;
-  int  st_end_flg;
   char **lines_in;
   int  nb_ant;
   int  nb_room;
@@ -76,8 +82,15 @@ typedef struct  s_data
   int  *spt_set;
 }             t_data;
 
+typedef struct s_flag
+{
+  int  process;
+  int  line_type;
+  int  st_end_flg;
+}              t_flag;
+
 // check errors functions
-int		check_line(t_data *data, char *line, int *flag);
+int		check_line(t_data *data, char *line, t_flag *flag);
 void   save_line(t_data *data, char *line);
 
 
@@ -85,9 +98,9 @@ void   save_line(t_data *data, char *line);
 void  ft_free_tab(char **tab);
 
 // annex functions
-int   ft_tube(char **tab, int *flag);
+int   ft_tube(char **tab, t_flag *flag);
 int   ft_index_room(t_data *data, char *room);
-void   ft_ch_st_end_nb(t_data *data);
+void   ft_ch_st_end_count(t_data *data);
 
 // debug functions
 void    ft_prt_tab(char **tab);

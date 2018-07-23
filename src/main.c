@@ -16,7 +16,6 @@ static void  ft_init_data(t_data *data)
 {
   data->st_cmd = 0;
   data->end_cmd = 0;
-  data->st_end_flg = FALSE;
   data->lines_in = NULL;
   data->nb_ant = 0;
   data->nb_room = 0;
@@ -29,21 +28,28 @@ static void  ft_init_data(t_data *data)
   data->spt_set = NULL;
 }
 
+static void   ft_init_flag(t_flag *flag)
+{
+  flag->process = ANT;
+  flag->line_type = UNDEFINED;
+  flag->st_end_flg = FALSE;
+}
+
 int   main(void)
 {
 	char		*line;
 	t_data	data;
-  int     flag;
+  t_flag  flag;
 
 	ft_init_data(&data);
-  flag = ANT;
+  ft_init_flag(&flag);
 	while (get_next_line(0, &line) > 0)
 	{
 		check_line(&data, line, &flag);
     save_line(&data, line);
 	}
   ft_printf("end main\n");
-  ft_ch_st_end_nb(&data);
+  ft_ch_st_end_count(&data);
   ft_prt_tab(data.lines_in);
   return (0);
 }
