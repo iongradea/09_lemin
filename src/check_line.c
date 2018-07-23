@@ -84,14 +84,14 @@ static int    ch_tube(t_data *data, char *line, t_flag *flag)
   tab = ft_strsplit_c(line, '-');
   ft_printf("ch_tube\n");
   if (NO_TWO_ELTS)
-    exit(PRT_ERROR);/*
+    exit(PRT_ERROR);
   if (THERE_ARE_ROOMS == FALSE)
     exit(PRT_ERROR);
-  if (ft_index_room(data, tab[0]) != NOT_FOUND ||
-    ft_index_room(data, tab[1]) != NOT_FOUND)
+  if (ft_index_room(data, tab[0]) == NOT_FOUND ||
+    ft_index_room(data, tab[1]) == NOT_FOUND)
     exit(PRT_ERROR);
   if (TUBE_ALREADY_SAVED)
-    exit(PRT_ERROR);*/
+    exit(PRT_ERROR);
   ft_free_tab(tab);
 	flag->line_type = TUBE;
   return (SUCCESS);

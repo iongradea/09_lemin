@@ -49,10 +49,12 @@ int   main(void)
 	{
 		check_line(&data, line, &flag);
     save_line(&data, line);
+    parse_data(&data, line, &flag);
 	}
-  ft_printf("end main\n");
   ft_ch_st_end_count(&data);
+  ft_printf("end parsing\n");
   ft_prt_tab(data.lines_in);
   ft_prt_tab(data.room);
+  ft_print_tab_int(data.map);
   return (0);
 }

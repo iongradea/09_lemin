@@ -24,3 +24,13 @@ void  ft_free_tab(char **tab)
   }
   free(tab);
 }
+
+void  ft_free_tab_int(int **tab)
+{
+  int i;
+
+  i = -1;
+  while (tab[++i])
+    free(tab[i]);
+  free(tab);
+}

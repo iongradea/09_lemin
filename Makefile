@@ -16,7 +16,8 @@ NAME = lem-in
 CC = gcc
 
 # Source files
-SRC = main.c check_line.c annex.c free_ptr.c debug.c save_line.c
+SRC = main.c check_line.c annex.c free_ptr.c debug.c save_line.c \
+	parse_data.c
 
 SRCS = $(addprefix ./$(SRC_DIR)/, $(SRC))
 

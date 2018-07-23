@@ -33,6 +33,10 @@
 # define COMMENT 4
 # define CMD 5
 
+// tube in map structure
+# define TUBE_LINK 1
+# define NO_TUBE_LINK 0
+
 // check_line
 # define IS_START_CMD (ft_strcmp(line, "##start") == 0)
 # define IS_END_CMD (ft_strcmp(line, "##end") == 0)
@@ -50,7 +54,7 @@
 # define THERE_ARE_ROOMS (data->room != NULL && ft_arrlen(data->room) != 0)
 # define INDEX_TAB0 (ft_index_room(data, tab[0]))
 # define INDEX_TAB1 (ft_index_room(data, tab[1]))
-# define TUBE_ALREADY_SAVED (data->map != NULL && data->map[INDEX_TAB0][INDEX_TAB1])
+# define TUBE_ALREADY_SAVED (data->map != NULL && data->map[INDEX_TAB0][INDEX_TAB1] == TUBE_LINK)
 
 // save_line
 # define IS_FIRST_LINE (data->lines_in == NULL)
@@ -115,6 +119,9 @@ typedef struct s_flag
 int		check_line(t_data *data, char *line, t_flag *flag);
 void   save_line(t_data *data, char *line);
 
+// parse functions
+int   parse_data(t_data *data, char *line, t_flag *flag);
+
 
 // free functions
 void  ft_free_tab(char **tab);
@@ -128,5 +135,6 @@ int  ft_set_flag(char *line, t_flag *flag);
 
 // debug functions
 void    ft_prt_tab(char **tab);
+void    ft_print_tab_int(int **tab);
 
 #endif

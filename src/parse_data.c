@@ -73,6 +73,43 @@ static int   parse_room(t_data *data, char *line, t_flag *flag)
   return (SUCCESS);
 }
 
+static int    parse_first_tube(t_data *data, char **tab)
+{
+  int i;
+  int j;
+
+  i = -1;
+  j = -1;
+  if (!(data->map = (int**)malloc(sizeof(int*) * (data->nb_room + 1))))
+    exit(0);
+  while (++i < data->nb_room)
+  {
+    if (!(data->map[i] = (int*)malloc(sizeof(int) * data->nb_room)))
+      exit(0);
+    while (++j < data->nb_room)
+      data->map[i][j] = NO_TUBE_LINK;
+    j = -1;
+  }
+  data->map[i] = NULL;
+  data->map[INDEX_TAB0][INDEX_TAB1] = TUBE_LINK;
+  data->map[INDEX_TAB1][INDEX_TAB0] = TUBE_LINK;
+  return (SUCCESS);
+}
+
+static int    parse_tube(t_data *data, char *line)
+{
+  char  **tab;
+
+  ft_printf("parse_tube\n");
+  tab = ft_strsplit_c(line, '-');
+  if (IS_FIRST_TUBE)
+    return (parse_first_tube(data, tab));
+  data->map[INDEX_TAB0][INDEX_TAB1] = TUBE_LINK;
+  data->map[INDEX_TAB1][INDEX_TAB0] = TUBE_LINK;
+  ft_free_tab(tab);
+  return (SUCCESS);
+}
+
 int   parse_data(t_data *data, char *line, t_flag *flag)
 {
   ft_printf("parse_data\n");
@@ -84,7 +121,7 @@ int   parse_data(t_data *data, char *line, t_flag *flag)
     return (data->nb_ant = ft_atoi(line));
   if (IS_ROOM_PARSE)
     return (parse_room(data, line, flag));
-  /*if (IS_TUBE_PARSE)
-    return (parse_tube(data, line));*/
+  if (IS_TUBE_PARSE)
+    return (parse_tube(data, line));
   return (SUCCESS);
 }
