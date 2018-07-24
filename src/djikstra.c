@@ -54,10 +54,9 @@ static int  min_dist_index(t_data *data)
       min_i = i;
   }
   DEBUG ? ft_printf("min_i : %d\n", min_i) : DEBUG;
-  /*
-  ft_printf("xxx\n");
+  DEBUG ? ft_printf("check no possible path\n") : DEBUG;
   if (NO_POSSIBLE_PATH)
-    exit(PRT_ERROR);*/
+    exit(PRT_ERROR);
   i = -1;
   while (++i < data->nb_room)
   {
