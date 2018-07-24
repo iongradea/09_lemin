@@ -20,7 +20,7 @@ static int		ch_nb_ants(char *line, t_flag *flag)
 	int		i;
 
 	i = 0;
-  ft_printf("ch_ant\n");
+  DEBUG ? ft_printf("launching ch_ant ...\n") : DEBUG;
 	while (line[i])
 	{
 		if (!ft_isdigit(line[i]) || IS_ZERO)
@@ -45,7 +45,7 @@ static int    ch_room(t_data *data, char *line, t_flag *flag)
   int   i;
 
   tab = ft_strsplit_c(line, ' ');
-  ft_printf("ch_room\n");
+  DEBUG ? ft_printf("launching ch_room ...\n") : DEBUG;
   if (NO_THREE_ELTS && flag->st_end_flg == TRUE)
     exit(PRT_ERROR);
   if (IS_TUBE)
@@ -82,7 +82,7 @@ static int    ch_tube(t_data *data, char *line, t_flag *flag)
   char  **tab;
 
   tab = ft_strsplit_c(line, '-');
-  ft_printf("ch_tube\n");
+  DEBUG ? ft_printf("launching ch_tube ...\n") : DEBUG;
   if (NO_TWO_ELTS)
     exit(PRT_ERROR);
   if (THERE_ARE_ROOMS == FALSE)
@@ -99,7 +99,7 @@ static int    ch_tube(t_data *data, char *line, t_flag *flag)
 
 static int  ch_st_end(t_data *data, char *line, t_flag *flag)
 {
-	ft_printf("ch_st_end\n");
+	DEBUG ? ft_printf("launching ch_st_end ...\n") : DEBUG;
   if (IS_START_CMD)
     data->st_cmd++;
   else if (IS_END_CMD)
@@ -124,7 +124,7 @@ int				check_line(t_data *data, char *line, t_flag *flag)
 {
   static int i = 0;
 
-  ft_printf("%d\n", i);
+  DEBUG ? ft_printf("launching check_line ... - i : %d\n", i) : DEBUG;
   i++;
 	if (line == NULL)
 		exit(PRT_ERROR);

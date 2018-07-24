@@ -37,6 +37,10 @@
 # define TUBE_LINK 1
 # define NO_TUBE_LINK 0
 
+// debug 
+# define DEBUG FALSE
+# define DEBUG_MAIN TRUE
+
 // check_line
 # define IS_START_CMD (ft_strcmp(line, "##start") == 0)
 # define IS_END_CMD (ft_strcmp(line, "##end") == 0)

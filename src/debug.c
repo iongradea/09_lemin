@@ -17,7 +17,7 @@ void    ft_prt_tab(char **tab)
   int   i;
 
   i = -1;
-  ft_printf("ft_prt_tab\n");
+  DEBUG ? ft_printf("launching ft_prt_tab ...\n") : DEBUG;
   while (tab[++i])
     ft_printf("%s\n", tab[i]);
 }

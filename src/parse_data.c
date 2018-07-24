@@ -17,7 +17,7 @@ static int   parse_first_room(t_data *data, char *line, t_flag *flag)
   char  **tab;
 
   tab = ft_strsplit_c(line, ' ');
-  ft_printf("parse_first_room\n");
+  DEBUG ? ft_printf("launching parse_first_room ...\n") : DEBUG;
   if (!(data->room = (char**)malloc(sizeof(char*) * 2)))
     exit(0);
   if (!(data->room[0] = ft_strdup(tab[0])))
@@ -37,7 +37,7 @@ static int   parse_room(t_data *data, char *line, t_flag *flag)
   char  **tab;
 
   tab = ft_strsplit_c(line, ' ');
-  ft_printf("parse_room\n");
+  DEBUG ? ft_printf("parse_room\n") : DEBUG;
   if (IS_FIRST_ROOM)
     return (parse_first_room(data, line, flag));
   i = -1;
@@ -50,7 +50,7 @@ static int   parse_room(t_data *data, char *line, t_flag *flag)
     exit(0);
   tmp[i + 1] = NULL;
   data->nb_room++;
-  ft_printf("parse_room : tab[0] : %s\n", tab[0]);
+  DEBUG ? ft_printf("parse_room : tab[0] : %s\n", tab[0]) : DEBUG;
   if (IS_START_ROOM || IS_END_ROOM)
     parse_st_end_room(data, tab[0], flag);
   ft_free_tab(tab);
@@ -86,7 +86,7 @@ static int    parse_tube(t_data *data, char *line)
 {
   char  **tab;
 
-  ft_printf("parse_tube\n");
+  DEBUG ? ft_printf("launching parse_tube ...\n") : DEBUG;
   tab = ft_strsplit_c(line, '-');
   if (IS_FIRST_TUBE)
     return (parse_first_tube(data, tab));
@@ -98,7 +98,7 @@ static int    parse_tube(t_data *data, char *line)
 
 int   parse_data(t_data *data, char *line, t_flag *flag)
 {
-  ft_printf("parse_data\n");
+  DEBUG ? ft_printf("launching parse_data\n") : DEBUG;
   if (IS_CMD_PARSE)
     return (ft_set_flag(line, flag));
   if (IS_COMMENT_PARSE)

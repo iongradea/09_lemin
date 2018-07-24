@@ -52,11 +52,14 @@ int   main(void)
     parse_data(&data, line, &flag);
 	}
   ft_ch_st_end_count(&data);
-  ft_printf("end parsing\n");
-  ft_prt_tab(data.lines_in);
-  ft_prt_tab(data.room);
-  ft_print_tab_int(data.map);
+  if (DEBUG_MAIN)
+  {
+    ft_printf("- END PARSING -\n");
+    ft_prt_tab(data.lines_in);
+    ft_prt_tab(data.room);
+    ft_print_tab_int(data.map);
+  }
   djikstra(&data);
-  ft_print_djikstra(&data);
+  DEBUG_MAIN ? ft_print_djikstra(&data) : DEBUG_MAIN;
   return (0);
 }
