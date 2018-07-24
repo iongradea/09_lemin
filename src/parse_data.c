@@ -12,7 +12,7 @@
 
 #include "../inc/lem-in.h"
 
-static int   parse_first_room(t_data *data, char *line)
+static int   parse_first_room(t_data *data, char *line, t_flag *flag)
 {
   char  **tab;
 
@@ -22,9 +22,11 @@ static int   parse_first_room(t_data *data, char *line)
     exit(0);
   if (!(data->room[0] = ft_strdup(tab[0])))
     exit(0);
-  ft_free_tab(tab);
   data->room[1] = NULL;
   data->nb_room++;
+  if (IS_START_ROOM || IS_END_ROOM)
+    parse_st_end_room(data, tab[0], flag);
+  ft_free_tab(tab);
   return (SUCCESS);
 }
 
@@ -37,7 +39,7 @@ static int   parse_room(t_data *data, char *line, t_flag *flag)
   tab = ft_strsplit_c(line, ' ');
   ft_printf("parse_room\n");
   if (IS_FIRST_ROOM)
-    return (parse_first_room(data, line));
+    return (parse_first_room(data, line, flag));
   i = -1;
   if (!(tmp = (char**)malloc(sizeof(char*) * (data->nb_room + 2))))
     exit(0);
@@ -48,6 +50,7 @@ static int   parse_room(t_data *data, char *line, t_flag *flag)
     exit(0);
   tmp[i + 1] = NULL;
   data->nb_room++;
+  ft_printf("parse_room : tab[0] : %s\n", tab[0]);
   if (IS_START_ROOM || IS_END_ROOM)
     parse_st_end_room(data, tab[0], flag);
   ft_free_tab(tab);
