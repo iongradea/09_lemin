@@ -55,6 +55,6 @@ void  ft_prt_rev_path(t_data *data)
 
   DEBUG ? ft_printf("launching ft_prt_rev_path ...\n") : DEBUG;
   i = -1;
-  while (data->rev_path[++i])
-    ft_printf("%s\n", data->rev_path[i]);
+  while (data->path[++i])
+    ft_printf("%s\n", data->path[i]);
 }

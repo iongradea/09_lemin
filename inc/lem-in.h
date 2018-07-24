@@ -94,16 +94,17 @@
 # define FIND_SMALLEST_DIST (min_i != UNDEFINED && data->dist[i] < data->dist[min_i])
 # define WHILE_START_NODE_NOT_REACHED (min_i != INDEX_TAB_START)
 
+// other libraries
 #include "../libft/inc/libft.h"
 #include "../libft/inc/ft_printf.h"
 #include "../libft/inc/get_next_line.h"
-
 
 /*
 details data struct :
 - st_cmd : used to count the nb of start cmd => should be 1 at the end
 - end_cmd : as above
 - lines_in : saves all input lines for printing
+- ant_tab : stores the index of the rev path where the ant is in
 */
 typedef struct  s_data
 {
@@ -119,7 +120,8 @@ typedef struct  s_data
   char **room;
   int  *dist;
   int  *spt_set;
-  char **rev_path;
+  char **path;
+  int  *ant_tab;
 }             t_data;
 
 /*

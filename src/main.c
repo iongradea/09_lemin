@@ -26,7 +26,7 @@ static void  ft_init_data(t_data *data)
   data->room = NULL;
   data->dist = NULL;
   data->spt_set = NULL;
-  data->rev_path = NULL;
+  data->path = NULL;
 }
 
 static void   ft_init_flag(t_flag *flag)
