@@ -76,7 +76,7 @@
 # define INDEX_TAB_END (INDEX_TAB(data->nameend))
 # define DIST_SET(i) (data->dist[i] != UNDEFINED)
 # define IS_NOT_PART_SPTSET(i) (data->spt_set[i] == FALSE)
-# define DIST_SMALLER (data->dist[i] < data->dist[min_i])
+# define DIST_SMALLER(i, min_i) (data->dist[i] < data->dist[min_i])
 # define NO_POSSIBLE_PATH (min_i = UNDEFINED)
 # define END_NOT_PART_SPTSET (data->spt_set[INDEX_TAB(data->nameend)] == FALSE)
 # define TUBE_EXIST(index, i) (data->map[index][i] == TUBE_LINK)
