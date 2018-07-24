@@ -26,6 +26,7 @@ static void  ft_init_data(t_data *data)
   data->room = NULL;
   data->dist = NULL;
   data->spt_set = NULL;
+  data->rev_path = NULL;
 }
 
 static void   ft_init_flag(t_flag *flag)
@@ -61,5 +62,7 @@ int   main(void)
   }
   djikstra(&data);
   DEBUG_MAIN ? ft_print_djikstra(&data) : DEBUG_MAIN;
+  create_rev_path(&data);
+  DEBUG_MAIN ? ft_prt_rev_path(&data) : DEBUG_MAIN;
   return (0);
 }

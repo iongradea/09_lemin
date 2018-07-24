@@ -24,7 +24,8 @@
 # define UNDEFINED -1
 
 // errors printing
-# define PRT_ERROR write(1, "ERROR\n", 6)
+# define PRT_ERROR (write(1, "ERROR\n", 6))
+# define PRT_ERROR_DBG (write(1, "here\n", 5))
 
 // line types
 # define ANT 1
@@ -37,8 +38,8 @@
 # define TUBE_LINK 1
 # define NO_TUBE_LINK 0
 
-// debug 
-# define DEBUG FALSE
+// debug
+# define DEBUG TRUE
 # define DEBUG_MAIN TRUE
 
 // check_line
@@ -81,12 +82,17 @@
 # define DIST_SET(i) (data->dist[i] != UNDEFINED)
 # define IS_NOT_PART_SPTSET(i) (data->spt_set[i] == FALSE)
 # define DIST_SMALLER(i, min_i) (data->dist[i] < data->dist[min_i])
-# define NO_POSSIBLE_PATH (min_i = UNDEFINED)
+# define NO_POSSIBLE_PATH (min_i == UNDEFINED)
 # define END_NOT_PART_SPTSET (data->spt_set[INDEX_TAB(data->nameend)] == FALSE)
 # define TUBE_EXIST(index, i) (data->map[index][i] == TUBE_LINK)
 # define DIST_UNDEFINED (data->dist[i] == UNDEFINED)
 # define DIST_GREATER_INDEX_AND_ONE (data->dist[i] > data->dist[index] + 1)
 # define FIRST_LOOP_DJIKSTRA (data->spt_set[INDEX_TAB_START] == FALSE)
+
+// create_rev_path
+# define INIT_BY_FINDING_FIRST_VALUE (min_i == UNDEFINED && data->map[INDEX_TAB(node_i)][i] == TUBE_LINK)
+# define FIND_SMALLEST_DIST (min_i != UNDEFINED && data->dist[i] < data->dist[min_i])
+# define WHILE_START_NODE_NOT_REACHED (min_i != INDEX_TAB_START)
 
 #include "../libft/inc/libft.h"
 #include "../libft/inc/ft_printf.h"
@@ -113,6 +119,7 @@ typedef struct  s_data
   char **room;
   int  *dist;
   int  *spt_set;
+  char **rev_path;
 }             t_data;
 
 /*
@@ -143,8 +150,12 @@ int   parse_data(t_data *data, char *line, t_flag *flag);
 // djikstra functions
 int     djikstra(t_data *data);
 
+// create_rev_path
+int   create_rev_path(t_data *data);
+
 // free functions
 void  ft_free_tab(char **tab);
+void  ft_free_tab_int(int **tab);
 
 // annex functions
 int   ft_tube(char **tab, t_flag *flag);
@@ -157,5 +168,6 @@ int  ft_set_flag(char *line, t_flag *flag);
 void    ft_prt_tab(char **tab);
 void    ft_print_tab_int(int **tab);
 void  ft_print_djikstra(t_data *data);
+void  ft_prt_rev_path(t_data *data);
 
 #endif
