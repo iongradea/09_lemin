@@ -22,6 +22,7 @@ static void  ft_init_path(t_data *data)
     exit(0);
   while (++i < data->nb_room)
     data->path[i] = NULL;
+  data->path[i] = NULL;
   if (!(data->path[0] = ft_strdup(data->room[INDEX_TAB_END])))
     exit(0);
 }
@@ -33,6 +34,8 @@ static void   ft_rev_path(t_data *data)
   int   i;
   char  **tmp;
 
+  DEBUG ? ft_printf("launching ft_rev_path ...\n") : DEBUG;
+  //DEBUG ? ft_prt_path(data) : DEBUG;
   len = ft_arrlen(data->path);
   i = -1;
   tmp = NULL;

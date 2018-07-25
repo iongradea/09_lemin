@@ -49,11 +49,11 @@ void  ft_print_djikstra(t_data *data)
     ft_printf("%s - %d - %d\n", data->room[i], data->dist[i], data->spt_set[i]);
 }
 
-void  ft_prt_rev_path(t_data *data)
+void  ft_prt_path(t_data *data)
 {
   int i;
 
-  DEBUG ? ft_printf("launching ft_prt_rev_path ...\n") : DEBUG;
+  DEBUG ? ft_printf("launching ft_prt_path ...\n") : DEBUG;
   i = -1;
   while (data->path[++i])
     ft_printf("%s\n", data->path[i]);

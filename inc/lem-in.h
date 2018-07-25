@@ -181,7 +181,7 @@ int  ft_set_flag(char *line, t_flag *flag);
 void    ft_prt_tab(char **tab);
 void    ft_print_tab_int(int **tab);
 void  ft_print_djikstra(t_data *data);
-void  ft_prt_rev_path(t_data *data);
+void  ft_prt_path(t_data *data);
 void  ft_debug_prt_ant(t_data *data);
 
 #endif

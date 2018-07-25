@@ -63,7 +63,7 @@ int   main(void)
   djikstra(&data);
   DEBUG_MAIN ? ft_print_djikstra(&data) : DEBUG_MAIN;
   create_path(&data);
-  DEBUG_MAIN ? ft_prt_rev_path(&data) : DEBUG_MAIN;
+  DEBUG_MAIN ? ft_prt_path(&data) : DEBUG_MAIN;
   prt_moving_ant(&data);
   return (0);
 }
