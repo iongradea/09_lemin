@@ -27,6 +27,7 @@ static void  ft_init_data(t_data *data)
   data->dist = NULL;
   data->spt_set = NULL;
   data->path = NULL;
+  data->ant_pos_tab = NULL;
 }
 
 static void   ft_init_flag(t_flag *flag)
@@ -36,6 +37,19 @@ static void   ft_init_flag(t_flag *flag)
   flag->st_end_flg = FALSE;
   flag->st_parser = FALSE;
   flag->end_parser = FALSE;
+}
+
+static void   ft_free_all(t_data *data)
+{
+  ft_free_tab(data->lines_in);
+  free(data->nameend);
+  free(data->namestart);
+  ft_free_tab_int(data->map);
+  ft_free_tab(data->room);
+  free(data->dist);
+  free(data->spt_set);
+  ft_free_tab(data->path);
+  free(data->ant_pos_tab);
 }
 
 int   main(void)
@@ -53,10 +67,11 @@ int   main(void)
     parse_data(&data, line, &flag);
 	}
   ft_ch_st_end_count(&data);
+  ft_prt_tab(data.lines_in);
+  ft_printf("\n");
   if (DEBUG_MAIN)
   {
     ft_printf("- END PARSING -\n");
-    ft_prt_tab(data.lines_in);
     ft_prt_tab(data.room);
     ft_print_tab_int(data.map);
   }
@@ -65,5 +80,6 @@ int   main(void)
   create_path(&data);
   DEBUG_MAIN ? ft_prt_path(&data) : DEBUG_MAIN;
   prt_moving_ant(&data);
+  ft_free_all(&data);
   return (0);
 }

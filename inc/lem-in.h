@@ -40,7 +40,7 @@
 
 // debug
 # define DEBUG FALSE
-# define DEBUG_MAIN TRUE
+# define DEBUG_MAIN FALSE
 
 // check_line
 # define IS_START_CMD (ft_strcmp(line, "##start") == 0)
