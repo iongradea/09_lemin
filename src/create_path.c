@@ -25,6 +25,8 @@ static void  ft_init_path(t_data *data)
   data->path[i] = NULL;
   if (!(data->path[0] = ft_strdup(data->room[INDEX_TAB_END])))
     exit(0);
+  ft_printf("ft_init_path : ");
+  ft_prt_path(data);
 }
 
 static void   ft_rev_path(t_data *data)
@@ -35,7 +37,6 @@ static void   ft_rev_path(t_data *data)
   char  **tmp;
 
   DEBUG ? ft_printf("launching ft_rev_path ...\n") : DEBUG;
-  //DEBUG ? ft_prt_path(data) : DEBUG;
   len = ft_arrlen(data->path);
   i = -1;
   tmp = NULL;
@@ -47,7 +48,6 @@ static void   ft_rev_path(t_data *data)
   tab[i] = NULL;
   tmp = data->path;
   data->path = tab;
-  ft_free_tab(tmp);
 }
 
 /*
@@ -65,9 +65,9 @@ static int  index_min_dist(t_data *data, char *node_i)
   DEBUG ? ft_printf("launching index_min_dist ...\n") : DEBUG;
   while (++i < data->nb_room)
   {
-    if (INIT_BY_FINDING_FIRST_VALUE)
+    if (INIT_BY_FINDING_FIRST_VALUE(min_i, node_i, i))
       min_i = i;
-    if (FIND_SMALLEST_DIST)
+    if (FIND_SMALLEST_DIST(min_i, i, node_i))
       min_i = i;
   }
   DEBUG ? ft_printf("min_i : %d\n", min_i) : DEBUG;
@@ -86,8 +86,10 @@ int   create_path(t_data *data)
   {
     len = ft_arrlen(data->path);
     min_i = index_min_dist(data, data->path[len - 1]);
+    DEBUG ? ft_printf("len : %d\n", len) : DEBUG;
     if (!(data->path[len] = ft_strdup(data->room[min_i])))
       exit(0);
+    DEBUG ? ft_printf("data->path[%d] : %s - data->room[%d] : %s\n", len, data->path[len], min_i, data->room[min_i]) : DEBUG;
   }
   ft_rev_path(data);
   return (SUCCESS);

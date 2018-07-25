@@ -90,8 +90,8 @@
 # define FIRST_LOOP_DJIKSTRA (data->spt_set[INDEX_TAB_START] == FALSE)
 
 // create_rev_path
-# define INIT_BY_FINDING_FIRST_VALUE (min_i == UNDEFINED && data->map[INDEX_TAB(node_i)][i] == TUBE_LINK)
-# define FIND_SMALLEST_DIST (min_i != UNDEFINED && data->dist[i] < data->dist[min_i])
+# define INIT_BY_FINDING_FIRST_VALUE(min_i, node_i, i) (min_i == UNDEFINED && data->map[INDEX_TAB(node_i)][i] == TUBE_LINK)
+# define FIND_SMALLEST_DIST(min_i, i, node_i) (min_i != UNDEFINED && data->dist[i] < data->dist[min_i] && data->map[INDEX_TAB(node_i)][i] == TUBE_LINK)
 # define WHILE_START_NODE_NOT_REACHED (min_i != INDEX_TAB_START)
 
 // ft_print_out
