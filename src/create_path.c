@@ -25,8 +25,6 @@ static void  ft_init_path(t_data *data)
   data->path[i] = NULL;
   if (!(data->path[0] = ft_strdup(data->room[INDEX_TAB_END])))
     exit(0);
-  ft_printf("ft_init_path : ");
-  ft_prt_path(data);
 }
 
 static void   ft_rev_path(t_data *data)
