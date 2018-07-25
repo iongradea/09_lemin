@@ -39,7 +39,7 @@
 # define NO_TUBE_LINK 0
 
 // debug
-# define DEBUG TRUE
+# define DEBUG FALSE
 # define DEBUG_MAIN TRUE
 
 // check_line
@@ -94,6 +94,14 @@
 # define FIND_SMALLEST_DIST (min_i != UNDEFINED && data->dist[i] < data->dist[min_i])
 # define WHILE_START_NODE_NOT_REACHED (min_i != INDEX_TAB_START)
 
+// ft_print_out
+# define START_PATH_I 0
+# define END_PATH_I (ft_arrlen(data->path) - 1)
+# define ANT_NOT_AT_START(i) (data->ant_pos_tab[i] != START_PATH_I)
+# define ANT_NOT_AT_END(i) (data->ant_pos_tab[i] != END_PATH_I)
+# define NOT_ALL_ANT_AT_END (ch_all_ant_end(data) == FALSE)
+# define ROOM_IN_PATH_INDEX(ant_i) (data->ant_pos_tab[ant_i])
+
 // other libraries
 #include "../libft/inc/libft.h"
 #include "../libft/inc/ft_printf.h"
@@ -121,7 +129,7 @@ typedef struct  s_data
   int  *dist;
   int  *spt_set;
   char **path;
-  int  *ant_tab;
+  int  *ant_pos_tab;
 }             t_data;
 
 /*
@@ -153,7 +161,10 @@ int   parse_data(t_data *data, char *line, t_flag *flag);
 int     djikstra(t_data *data);
 
 // create_rev_path
-int   create_rev_path(t_data *data);
+int   create_path(t_data *data);
+
+// print_out
+int   prt_moving_ant(t_data *data);
 
 // free functions
 void  ft_free_tab(char **tab);
@@ -171,5 +182,6 @@ void    ft_prt_tab(char **tab);
 void    ft_print_tab_int(int **tab);
 void  ft_print_djikstra(t_data *data);
 void  ft_prt_rev_path(t_data *data);
+void  ft_debug_prt_ant(t_data *data);
 
 #endif

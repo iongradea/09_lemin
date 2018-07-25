@@ -58,3 +58,13 @@ void  ft_prt_rev_path(t_data *data)
   while (data->path[++i])
     ft_printf("%s\n", data->path[i]);
 }
+
+void  ft_debug_prt_ant(t_data *data)
+{
+  int i;
+
+  DEBUG ? ft_printf("launching ft_debug_prt_ant ...\n") : DEBUG;
+  i = -1;
+  while (++i < data->nb_ant)
+    ft_printf("ant %d : %d\n", i, data->ant_pos_tab[i]);
+}

@@ -71,7 +71,7 @@ static int  index_min_dist(t_data *data, char *node_i)
   return (min_i);
 }
 
-int   create_rev_path(t_data *data)
+int   create_path(t_data *data)
 {
   int min_i;
   int len;
