@@ -70,7 +70,7 @@ $(NAME): $(OBJS)
 
 clean:
 	$(MAKE) -C $(LBFT_DIR) clean
-	$(RM) -rfv $(NAME)
+	$(RM) -rfv $(OBJS)
 	@rmdir $(OBJ_DIR) 2> /dev/null || true
 
 fclean: clean
