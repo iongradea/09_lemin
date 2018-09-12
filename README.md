@@ -49,6 +49,7 @@ This structure is used during the parsing and checking errors at the beginning o
 
 ![Alt text](./img/check_structure.png?raw=true "Title")
 
+To follow the program and debug, there is a DEBUG macro in the include file in ./inc. Setting DEBUG to 1 prints logs on stdout.
 
 ## Program architecture
 
@@ -66,4 +67,3 @@ Algorithm :<br>
 
 ## Strategy
 For the sake of simplicity and speed development, the chosen algorithm is djikstra and all ants follow the shortest path. No time throughput optimization has been done.
-
