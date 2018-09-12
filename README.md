@@ -1,7 +1,7 @@
 # LEMIN
 
 ## Launch
-`make re`
+`make re`<br/>
 `./lem-in < maps/subject-1.map`
 
 ## Goal
@@ -47,7 +47,7 @@ Program data structure is as followed :<br/>
 Check structure :<br/>
 This structure is used during the parsing and checking errors at the beginning of the program.<br> 
 
-![Alt text](./img/check_structure?raw=true "Title")
+![Alt text](./img/check_structure.png?raw=true "Title")
 
 
 ## Program architecture
@@ -61,7 +61,7 @@ Algorithm :<br>
 - create_path.c : create the shortest path in data->path<br>
 - print_out.c : prints the different turns when each ant goes through the mesh<br>
 
-![Alt text](./img/file_structure?raw=true "Title")
+![Alt text](./img/file_structure.png?raw=true "Title")
 
 
 ## Strategy
