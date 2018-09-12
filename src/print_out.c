@@ -56,14 +56,12 @@ static void   ft_prt_ant(t_data *data, int ant_i)
 
 int   prt_moving_ant(t_data *data)
 {
-  static int  last_ant_i_prt = 0;
   int   ant_i;
 
   DEBUG ? ft_printf("launching prt_moving_ant ...\n") : DEBUG;
   ft_init_ant(data);
   while (NOT_ALL_ANT_AT_END)
   {
-    DEBUG ? ft_printf("start while\n") : DEBUG;
     ant_i = -1;
     while (++ant_i < data->nb_ant)
       if (ANT_NOT_AT_START(ant_i) && ANT_NOT_AT_END(ant_i))

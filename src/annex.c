@@ -14,6 +14,7 @@
 
 int   ft_tube(char **tab, t_flag *flag)
 {
+  DEBUG ? ft_printf("launching ft_tube ...\n") : DEBUG;
   flag->process = TUBE;
   ft_free_tab(tab);
   return (SUCCESS);
@@ -23,6 +24,7 @@ int		ft_index_room(t_data *data, char *room)
 {
 	int		i;
 
+  DEBUG ? ft_printf("launching ft_index_room ...\n") : DEBUG;
 	i = 0;
 	while (data->room[i])
 	{
@@ -35,6 +37,7 @@ int		ft_index_room(t_data *data, char *room)
 
 void   ft_ch_st_end_count(t_data *data)
 {
+  DEBUG ? ft_printf("launching ft_ch_st_end_count ...\n") : DEBUG;
   if (data->st_cmd != 1)
     exit(PRT_ERROR);
   if (data->end_cmd != 1)

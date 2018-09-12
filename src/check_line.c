@@ -44,8 +44,8 @@ static int    ch_room(t_data *data, char *line, t_flag *flag)
   char  **tab;
   int   i;
 
+	DEBUG ? ft_printf("launching ch_room ...\n") : DEBUG;
   tab = ft_strsplit_c(line, ' ');
-  DEBUG ? ft_printf("launching ch_room ...\n") : DEBUG;
   if (NO_THREE_ELTS && flag->st_end_flg == TRUE)
     exit(PRT_ERROR);
   if (IS_TUBE)

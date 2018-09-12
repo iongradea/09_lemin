@@ -16,6 +16,7 @@ void  ft_free_tab(char **tab)
 {
   int i;
 
+  DEBUG ? ft_printf("launching ft_free_tab ...\n") : DEBUG;
   i = 0;
   while (tab[i])
   {
@@ -29,6 +30,7 @@ void  ft_free_tab_int(int **tab)
 {
   int i;
 
+  DEBUG ? ft_printf("launching ft_free_tab_int ...\n") : DEBUG;
   i = -1;
   while (tab[++i])
     free(tab[i]);

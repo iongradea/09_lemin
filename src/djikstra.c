@@ -16,6 +16,7 @@ static int  ft_init_djikstra(t_data *data)
 {
   int i;
 
+  DEBUG ? ft_printf("launching ft_init_djikstra ...\n") : DEBUG;
   i = -1;
   if (!(data->dist = (int*)malloc(sizeof(int) * data->nb_room)))
     exit(0);

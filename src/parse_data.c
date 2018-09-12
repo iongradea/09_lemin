@@ -36,8 +36,8 @@ static int   parse_room(t_data *data, char *line, t_flag *flag)
   char  **tmp;
   char  **tab;
 
+  DEBUG ? ft_printf("launching parse_room ...\n") : DEBUG;
   tab = ft_strsplit_c(line, ' ');
-  DEBUG ? ft_printf("parse_room\n") : DEBUG;
   if (IS_FIRST_ROOM)
     return (parse_first_room(data, line, flag));
   i = -1;
@@ -64,6 +64,7 @@ static int    parse_first_tube(t_data *data, char **tab)
   int i;
   int j;
 
+  DEBUG ? ft_printf("launching parse_first_tube ...\n") : DEBUG;
   i = -1;
   j = -1;
   if (!(data->map = (int**)malloc(sizeof(int*) * (data->nb_room + 1))))

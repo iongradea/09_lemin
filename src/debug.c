@@ -28,6 +28,7 @@ void    ft_print_tab_int(int **tab)
   int j;
   int len;
 
+  DEBUG ? ft_printf("launching ft_print_tab_int ...\n") : DEBUG;
   len = ft_arrlen((char**)tab);
   i = -1;
   j = -1;
@@ -44,6 +45,7 @@ void  ft_print_djikstra(t_data *data)
 {
   int i;
 
+  DEBUG ? ft_printf("launching ft_print_djikstra ...\n") : DEBUG;
   i = -1;
   while (++i < data->nb_room)
     ft_printf("%s - %d - %d\n", data->room[i], data->dist[i], data->spt_set[i]);

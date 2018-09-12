@@ -14,6 +14,7 @@
 
 static void  ft_init_data(t_data *data)
 {
+  DEBUG ? ft_printf("launching ft_init_data ...\n") : DEBUG;
   data->st_cmd = 0;
   data->end_cmd = 0;
   data->lines_in = NULL;
@@ -32,6 +33,7 @@ static void  ft_init_data(t_data *data)
 
 static void   ft_init_flag(t_flag *flag)
 {
+  DEBUG ? ft_printf("launching ft_init_flag ...\n") : DEBUG;
   flag->process = ANT;
   flag->line_type = UNDEFINED;
   flag->st_end_flg = FALSE;
@@ -41,6 +43,7 @@ static void   ft_init_flag(t_flag *flag)
 
 static void   ft_free_all(t_data *data)
 {
+  DEBUG ? ft_printf("launching ft_free_all ...\n") : DEBUG;
   ft_free_tab(data->lines_in);
   free(data->nameend);
   free(data->namestart);
@@ -58,6 +61,7 @@ int   main(void)
 	t_data	data;
   t_flag  flag;
 
+  DEBUG ? ft_printf("launching main ...\n") : DEBUG;
 	ft_init_data(&data);
   ft_init_flag(&flag);
 	while (get_next_line(0, &line) > 0)
